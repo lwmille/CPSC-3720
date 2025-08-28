@@ -40,9 +40,11 @@ public:
     std::string endTime;
     SessionStatus status;
 
+    Session() : sessionId(0), status(Proposed) {}
+
     Session(const std::vector<std::string>& users, const std::string& d,
             const std::string& start, const std::string& end)
-      2  : participants(users), date(d), startTime(start), endTime(end), status(Proposed) {
+        : participants(users), date(d), startTime(start), endTime(end), status(Proposed) {
         sessionId = nextSessionId++;
     }
 
@@ -53,8 +55,6 @@ public:
             std::cout << user << " ";
         std::cout << "\nStatus: " << (status == Proposed ? "Proposed" : status == Confirmed ? "Confirmed" : "Rejected") << std::endl;
     }
-
-    Session() = default;
 };
 int Session::nextSessionId = 1;
 
