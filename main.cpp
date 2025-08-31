@@ -336,6 +336,24 @@ public:
             std::cout << "Session already confirmed." << std::endl;
             return;
         }
+
+        //Check for overlap
+        for (const auto& participant : sess.participants) {
+            const Student& user = users[participant];
+            for (int sid : user.getSessionIds()) {
+                if (sid == sessionId) continue;
+                const Session& other = sessions[sid];
+                if (other.status != Confirmed) continue;
+
+                if (sess.date == other.date) {
+                    if (!(sess.endTime <= other.startTime || sess.startTime >= other.endTime)) {
+                        std::cout << "Cannot confirm session. It overlaps with session "
+                                << other.sessionId << " for user " << participant << "." << std::endl;
+                        return;
+                    }
+                }
+            }
+        }
         sess.status = Confirmed;
         std::cout << "Session " << sessionId << " confirmed." << std::endl;
     }
@@ -410,7 +428,7 @@ int main() {
             app.listCourses();
         } else if (cmd == "add_availability" && tokens.size() == 4) {
             app.addAvailability(tokens[1], tokens[2], tokens[3]);
-        } else if (cmd == "remove_availability" && tokens.size() == 3) {
+        } else if (cmd == "remove_availability" && tokens.size() == 4) {
             app.removeAvailability(tokens[1], tokens[2]);
         } else if (cmd == "list_availability") {
             app.listAvailability();

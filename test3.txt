@@ -1,0 +1,43 @@
+register Alex 1111
+login Alex 1111
+add_course CPSC3220
+add_course CPSC4160
+add_availability 2025-10-04 08:00 12:00
+logout
+
+register Mia 2222
+login Mia 2222
+add_course CPSC3220
+add_course CPSC3520
+add_availability 2025-10-04 14:00 18:00
+logout
+
+register Noah 3333
+login Noah 3333
+add_course CPSC3220
+add_course CPSC3520
+add_availability 2025-10-04 09:00 11:00
+logout
+
+login Alex 1111
+search CPSC3220
+propose_session Mia 2025-10-04 09:00 10:00
+propose_session Noah 2025-10-04 09:00 10:00
+logout
+
+login Mia 2222
+view_sessions
+confirm_session 1
+logout
+
+login Noah 3333
+view_sessions
+confirm_session 2
+logout
+
+login Alex 1111
+remove_course CPSC4160
+remove_availability 2025-10-04 08:00 12:00
+logout
+
+exit

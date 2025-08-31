@@ -1,0 +1,43 @@
+register Luke 1234
+login Luke 1234
+add_course CPSC3220
+add_course CPSC3520
+add_course CPSC3720
+add_course CPSC4160
+add_availability 2025-10-01 08:00 14:00
+add_availability 2025-10-03 08:00 14:00
+logout
+
+register Hayden 4321
+login Hayden 4321
+add_course CPSC3720
+add_course CPSC4160
+add_availability 2025-10-01 10:00 12:00
+add_availability 2025-10-02 09:00 13:00
+logout
+
+register Sarah 9876
+login Sarah 9876
+add_course CPSC3720
+add_course CPSC3220
+add_availability 2025-10-01 09:00 11:00
+add_availability 2025-10-03 10:00 14:00
+logout
+
+login Luke 1234
+search CPSC3720
+propose_session Hayden 2025-10-01 10:00 11:00
+propose_session Sarah 2025-10-01 09:30 10:30
+logout
+
+login Hayden 4321
+view_sessions
+confirm_session 1
+logout
+
+login Sarah 9876
+view_sessions
+confirm_session 2
+logout
+
+exit
