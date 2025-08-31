@@ -8,14 +8,14 @@
 class Session;
 
 class Course {
-    public:
+public:
     std::string courseName;
 
     Course(const std::string& name) : courseName(name) {}
 };
 
 class AvailabilitySlot {
-    public:
+public:
     std::string date;      // YYYY-MM-DD
     std::string startTime; // HH:MM (24h)
     std::string endTime;
@@ -31,7 +31,7 @@ class AvailabilitySlot {
 enum SessionStatus { Proposed, Confirmed, Rejected };
 
 class Session {
-    public:
+public:
         static int nextSessionId;
         int sessionId;
         std::vector<std::string> participants; // usernames
@@ -60,14 +60,14 @@ class Session {
 int Session::nextSessionId = 1;
 
 class Student {
-    private:
+private:
         std::string username;
         std::string password;
         std::vector<Course> courses;
         std::vector<AvailabilitySlot> availability;
         std::vector<int> sessionIds; // IDs of sessions student is part of
 
-    public:
+public:
     Student() = default;
 
     Student(const std::string& user, const std::string& pass)
@@ -147,12 +147,12 @@ class Student {
 
 // Database simulation for users and sessions
 class SchedulerApp {
-    private:
+private:
         std::map<std::string, Student> users;    // username -> Student
         std::map<int, Session> sessions;         // sessionId -> Session
         Student* loggedInUser = nullptr;
 
-    public:
+public:
     void registerUser(const std::string& username, const std::string& password) {
         if (users.find(username) != users.end()) {
             std::cout << "Username already exists." << std::endl;
