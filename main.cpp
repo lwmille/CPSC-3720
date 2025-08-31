@@ -8,14 +8,14 @@
 class Session;
 
 class Course {
-public:
+    public:
     std::string courseName;
 
     Course(const std::string& name) : courseName(name) {}
 };
 
 class AvailabilitySlot {
-public:
+    public:
     std::string date;      // YYYY-MM-DD
     std::string startTime; // HH:MM (24h)
     std::string endTime;
@@ -31,42 +31,43 @@ public:
 enum SessionStatus { Proposed, Confirmed, Rejected };
 
 class Session {
-public:
-    static int nextSessionId;
-    int sessionId;
-    std::vector<std::string> participants; // usernames
-    std::string date;
-    std::string startTime;
-    std::string endTime;
-    SessionStatus status;
+    public:
+        static int nextSessionId;
+        int sessionId;
+        std::vector<std::string> participants; // usernames
+        std::string date;
+        std::string startTime;
+        std::string endTime;
+        SessionStatus status;
 
-    Session() : sessionId(0), status(Proposed) {}
+        Session() : sessionId(0), status(Proposed) {}
 
-    Session(const std::vector<std::string>& users, const std::string& d,
-            const std::string& start, const std::string& end)
-        : participants(users), date(d), startTime(start), endTime(end), status(Proposed) {
-        sessionId = nextSessionId++;
-    }
+        Session(const std::vector<std::string>& users, const std::string& d,
+                const std::string& start, const std::string& end)
+            : participants(users), date(d), startTime(start), endTime(end), status(Proposed) {
+            sessionId = nextSessionId++;
+        }
 
-    void print() const {
-        std::cout << "Session ID: " << sessionId << "\nDate: " << date << " " << startTime << "-" << endTime
-                  << "\nParticipants: ";
-        for (const auto& user : participants)
-            std::cout << user << " ";
-        std::cout << "\nStatus: " << (status == Proposed ? "Proposed" : status == Confirmed ? "Confirmed" : "Rejected") << std::endl;
-    }
+        void print() const {
+            std::cout << "Session ID: " << sessionId << "\nDate: " << date << " " << startTime << "-" << endTime
+                    << "\nParticipants: ";
+            for (const auto& user : participants)
+                std::cout << user << " ";
+            std::cout << "\nStatus: " << (status == Proposed ? "Proposed" : status == Confirmed ? "Confirmed" : "Rejected") << std::endl;
+        }
 };
+
 int Session::nextSessionId = 1;
 
 class Student {
-private:
-    std::string username;
-    std::string password;
-    std::vector<Course> courses;
-    std::vector<AvailabilitySlot> availability;
-    std::vector<int> sessionIds; // IDs of sessions student is part of
+    private:
+        std::string username;
+        std::string password;
+        std::vector<Course> courses;
+        std::vector<AvailabilitySlot> availability;
+        std::vector<int> sessionIds; // IDs of sessions student is part of
 
-public:
+    public:
     Student() = default;
 
     Student(const std::string& user, const std::string& pass)
@@ -146,12 +147,12 @@ public:
 
 // Database simulation for users and sessions
 class SchedulerApp {
-private:
-    std::map<std::string, Student> users;    // username -> Student
-    std::map<int, Session> sessions;         // sessionId -> Session
-    Student* loggedInUser = nullptr;
+    private:
+        std::map<std::string, Student> users;    // username -> Student
+        std::map<int, Session> sessions;         // sessionId -> Session
+        Student* loggedInUser = nullptr;
 
-public:
+    public:
     void registerUser(const std::string& username, const std::string& password) {
         if (users.find(username) != users.end()) {
             std::cout << "Username already exists." << std::endl;

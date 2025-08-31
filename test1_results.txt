@@ -1,0 +1,78 @@
+Welcome to the Study Scheduler CLI App!
+Available commands:
+register [username] [password]
+login [username] [password]
+logout
+add_course [course_name]
+remove_course [course_name]
+list_courses
+add_availability [date] [start] [end]
+remove_availability [date] [start]
+list_availability
+search [course_name]
+suggest_matches
+propose_session [username] [date] [start] [end]
+confirm_session [session_id]
+view_sessions
+help
+exit
+> register Luke 1234
+User registered successfully.
+> login Luke 1234
+Logged in as Luke
+> add_course CPSC3220
+Course added: CPSC3220
+> add_course CPSC3520
+Course added: CPSC3520
+> add_course CPSC3720
+Course added: CPSC3720
+> add_course CPSC4160
+Course added: CPSC4160
+> add_availability 2025-10-01 08:00 14:00
+Availability added: 2025-10-01 08:00-14:00
+> add_availability 2025-10-03 08:00 14:00
+Availability added: 2025-10-03 08:00-14:00
+> logout
+Logged out.
+> register Hayden 4321
+User registered successfully.
+> login Hayden 4321
+Logged in as Hayden
+> add_course CPSC3720
+Course added: CPSC3720
+> propose_session Hayden 2025-10-01 10:00 14:00
+Cannot propose session with yourself.
+> logout
+Logged out.
+> login Luke 1234
+Logged in as Luke
+> search CPSC3720
+Students enrolled in CPSC3720:
+- Hayden
+- Luke
+> propose_session Hayden 2025-10-01 10:00 11:00
+Session proposed with Hayden. Session ID: 1
+> logout
+Logged out.
+> login Hayden 4321
+Logged in as Hayden
+> view_sessions
+Your sessions:
+Session ID: 1
+Date: 2025-10-01 10:00-11:00
+Participants: Luke Hayden
+Status: Proposed
+-----
+> confirm_session 1
+Session 1 confirmed.
+> view_sessions
+Your sessions:
+Session ID: 1
+Date: 2025-10-01 10:00-11:00
+Participants: Luke Hayden
+Status: Confirmed
+-----
+> logout
+Logged out.
+> exit
+Goodbye!
