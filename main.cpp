@@ -389,7 +389,12 @@ void printHelp() {
               << "confirm_session [session_id]\n"
               << "view_sessions\n"
               << "help\n"
+              << "clear\n"
               << "exit\n";
+}
+
+void clearScreen() {
+	std::cout << "\033[H\033[2J"; 
 }
 
 int main() {
@@ -448,6 +453,9 @@ int main() {
         } else if (cmd == "exit") {
             std::cout << "Goodbye!" << std::endl;
             break;
+	    } else if (cmd == "clear") {
+            // Note: this only works with Unix terminals, not windows
+            std::cout << "\033[H\033[2J";
         } else {
             std::cout << "Unknown command or wrong arguments. Type 'help' for commands." << std::endl;
         }
