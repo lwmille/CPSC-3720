@@ -1,7 +1,7 @@
 # CPSC-3720
----
 
 Available commands:  
+---
 register [username] [password]  
 login [username] [password]  
 logout  
